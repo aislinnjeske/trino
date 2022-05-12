@@ -582,6 +582,19 @@ public class TestBigQueryConnectorTest
         assertUpdate("DROP TABLE " + tableName);
     }
 
+    @Test
+    public void testSelectMaterializedView()
+    {
+        String materializedView = "test.test_materialized_view" + randomTableSuffix();
+        try {
+            onBigQuery("CREATE MATERIALIZED VIEW " + materializedView + " AS SELECT count(1) AS cnt FROM tpch.region");
+            assertQuery("SELECT * FROM " + materializedView, "VALUES 5");
+        }
+        finally {
+            onBigQuery("DROP MATERIALIZED VIEW " + materializedView);
+        }
+    }
+
     private void onBigQuery(String sql)
     {
         bigQuerySqlExecutor.execute(sql);
