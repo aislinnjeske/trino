@@ -69,6 +69,7 @@ import static java.util.stream.Collectors.joining;
 public class TrinoS3ConfigurationInitializer
         implements ConfigurationInitializer
 {
+    private final String awsAccessKeyTest;
     private final String awsAccessKey;
     private final String awsSecretKey;
     private final String endpoint;
