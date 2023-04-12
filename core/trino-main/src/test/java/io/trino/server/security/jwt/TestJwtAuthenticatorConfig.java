@@ -13,6 +13,7 @@
  */
 package io.trino.server.security.jwt;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import io.airlift.configuration.testing.ConfigAssertions;
 import org.testng.annotations.Test;
@@ -36,7 +37,8 @@ public class TestJwtAuthenticatorConfig
                         .setRequiredIssuer(null)
                         .setPrincipalField("sub")
                         .setUserMappingPattern(null)
-                        .setUserMappingFile(null));
+                        .setUserMappingFile(null)
+                        .setJwtIdpConfigFiles("test.properties"));
     }
 
     //TODO: remove unrelated code after deprecated properties are removed.
@@ -65,8 +67,8 @@ public class TestJwtAuthenticatorConfig
                 .setRequiredIssuer("some-issuer")
                 .setPrincipalField("some-field")
                 .setUserMappingPattern("(.*)@something")
-                .setUserMappingFile(userMappingFile.toFile());
-        //.setJwtIdpConfigFiles(ImmutableList.of(idpConfig1.toFile(), idpConfig2.toFile()));
+                .setUserMappingFile(userMappingFile.toFile())
+                .setJwtIdpConfigFiles(ImmutableList.of(idpConfig1.toFile(), idpConfig2.toFile()));
 
         assertFullMapping(properties, expected);
     }
