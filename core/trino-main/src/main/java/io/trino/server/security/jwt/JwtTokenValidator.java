@@ -119,7 +119,7 @@ public class JwtTokenValidator
     protected void setLegacyConfigurations(JwtAuthenticatorConfig config)
     {
 //        checkState(!isNullOrEmpty(config.getRequiredIssuer()), "config properties does not contain jwt required issuer");
-//        checkState(!isNullOrEmpty(config.getKeyFile()), "config properties does not contain jwt signing key");
+        checkState(!isNullOrEmpty(config.getKeyFile()), "http-server.authentication.jwt.key-file must not be null");
         this.requiredIssuer = config.getRequiredIssuer();
         this.keyFile = config.getKeyFile();
         if (config.getPrincipalField() != null) {
