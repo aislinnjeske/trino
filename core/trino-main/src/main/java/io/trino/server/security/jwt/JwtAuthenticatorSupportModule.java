@@ -30,4 +30,17 @@ public class JwtAuthenticatorSupportModule
         configBinder(binder).bindConfig(JwtAuthenticatorConfig.class);
         httpClientBinder(binder).bindHttpClient("jwk", ForJwt.class);
     }
+
+    // this module can be added multiple times, and this prevents multiple processing by Guice
+    @Override
+    public int hashCode()
+    {
+        return JwtAuthenticatorSupportModule.class.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        return obj instanceof JwtAuthenticatorSupportModule;
+    }
 }

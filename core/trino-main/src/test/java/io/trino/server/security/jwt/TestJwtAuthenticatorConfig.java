@@ -38,7 +38,7 @@ public class TestJwtAuthenticatorConfig
                         .setPrincipalField("sub")
                         .setUserMappingPattern(null)
                         .setUserMappingFile(null)
-                        .setJwtIdpConfigFiles("test.properties"));
+                        .setJwtIdpConfigFiles(""));
     }
 
     //TODO: remove unrelated code after deprecated properties are removed.
